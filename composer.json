@@ -1,0 +1,16 @@
+{
+    "name": "klaud/_3_sprint_crud",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Klaudijus",
+            "email": "klaudijus.k1996@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "files": ["src/Employees.php", "src/Project.php"]
+    }
+
+}
