@@ -1,5 +1,6 @@
 <?php 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -22,19 +23,16 @@ use Doctrine\Common\Collections\ArrayCollection;
          */
         protected $project_deadline;
         
+        /**
+         * One employee has many projects. This is the inverse side.
+         * @ORM\OneToMany(targetEntity="Employee", mappedBy="project_id")
+         */
+        protected $team;
 
-        // public function findAllOrderByCompany()
-        // {
-        //     return $this->createQueryBuilder('Project')
-        //         ->leftJoin('p.company','c')
-        //         ->orderBy('c.name', 'asc')
-        //         ->getQuery() 
-        //         ->getResult();
-        // }
-
-        // public function getEmployeeName() {
-        //     return $this->employee_id;
-        // }
+        public function getTeam() {
+            return $this->team;
+        }
+        
         public function getID() {
             return $this->project_id;
         }

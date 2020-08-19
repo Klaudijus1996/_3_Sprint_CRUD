@@ -1,5 +1,9 @@
 <?php 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Query\AST\Functions\FunctionNode;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="employees")
@@ -24,16 +28,17 @@ use Doctrine\ORM\Mapping as ORM;
          */
         protected $role;
         /**
-         * @ORM\ManyToOne(targetEntity="employee")
-         * @ORM\JoinTable(name="project_employee",
-         *      joinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="project_id")},
-         *      inverseJoinColumns={@ORM\JoinColumn(name="project_id", referencedColumnName="id", unique=true)}
-         * )
+         * Many employees have one project. This is the owning side.
+         * @ORM\ManyToOne(targetEntity="Project", inversedBy="team")
+         * @ORM\JoinColumn(name="project_id", referencedColumnName="project_id")
          */
-        protected $employee_id;
+        protected $project_id;
 
         public function getProjectData() {
             return $this->project_id;
+        }
+        public function setProjectID($id) {
+            $this->project_id = $id;
         }
     
         public function getID() {

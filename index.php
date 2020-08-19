@@ -1,10 +1,25 @@
 <?php 
-declare(strict_types=1); include_once('bootstrap.php');
+declare(strict_types=1);
+
+use Doctrine\ORM\Query;
+
+include_once('bootstrap.php');
 $employees = $entityManager->getRepository('employee')->findAll();
 $projects = $entityManager->getRepository('project')->findAll();
 $EmployeeTableColumns = $entityManager->getClassMetadata('employee')->getColumnNames();
 $ProjectsColumns = $entityManager->getClassMetadata('project')->getColumnNames();
-// $ProjectsJoinedColumns = $entityManager->getClassMetadata('project')
+function group($peopleArr) {
+    if(empty($peopleArr)) {
+        return '-';
+    }
+    $groupedPeople = "";
+    foreach($peopleArr as $people) {
+        foreach($people as $person) {
+            $groupedPeople.= "$person, ";
+        }
+    }
+    return substr($groupedPeople, 0, strripos($groupedPeople, ','));
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,19 +37,6 @@ $ProjectsColumns = $entityManager->getClassMetadata('project')->getColumnNames()
             <a href="index.php?projects">Projects</a>
             <h2>C.R.U.D</h2>
         </div>
-        <?php
-            $test = $entityManager->getRepository('project')->findAll();
-            echo "<br>:: TESTING ::<br>";
-            // echo "<pre>";var_dump($test);
-            foreach($test as $tests) {
-                echo "<pre>";var_dump($tests->getEmployeeName()->getName());
-                // $data = $tests->getEmployeeName();
-                // foreach($data as $kekw) {
-                //     echo $kekw->getName();
-                // }
-            }
-            echo "<br>";
-        ?>
     </header>
     <main>
         <table>
@@ -43,6 +45,7 @@ $ProjectsColumns = $entityManager->getClassMetadata('project')->getColumnNames()
                 <?php foreach($EmployeeTableColumns as $column) { ?>
                 <th><?echo $column?></th>
                 <?php } ?>
+                <th>Actions</th>
             </tr>
             <?php foreach($employees as $employee) { ?>
             <tr>
@@ -50,24 +53,31 @@ $ProjectsColumns = $entityManager->getClassMetadata('project')->getColumnNames()
                 <td><?echo $employee->getName()?></td>
                 <td><?echo $employee->getSurname()?></td>
                 <td><?echo $employee->getRole()?></td>
+                <td><a href="index.php?del.e">Del</a><a href="index.php?edit.e">Edit</a></td>
             </tr>
             <?php } ?>
+        </table>
+        <?php require_once('scripts/add.php') ?>
             <?php if(isset($_GET['projects'])) { ob_clean(); ?>
             <tr>
-                <?php foreach($ProjectsColumns as $column) { ?>
+                <?php $column_index = 0; foreach($ProjectsColumns as $column) {$column_index++; ?>
                 <th><?echo $column?></th>
-                <?php } ?>
-                <th>Employees</th>
+                <?php if($column_index == 1) { echo "<th>Employees</th>"; } else {continue;} } ?>
+                <th>Actions</th>
             </tr>
-            <?php foreach($projects as $project) { ?>
+            <?php foreach($projects as $project) {
+                $id = $project->getID();
+                $query = $entityManager->createQuery("SELECT CONCAT(u.name, ' ', u.surname) as fullname FROM Employee u WHERE u.project_id = $id GROUP BY u.id")->getResult(); ?>
             <tr>
                 <td><?echo $project->getID()?></td>
+                <td><?echo group($query)?></td>
                 <td><?echo $project->getName()?></td>
                 <td><?echo $project->getDeadline()?></td>
-                <td><?=$project->getEmployeeName()->getName()?></td>
+                <td><a href="index.php?del.p">Del</a><a href="index.php?edit.p">Edit</a><a href="index.php?assign">Assign</a></td>
             </tr>
             <?php }} ?>
         </table>
+        <?php //require_once('scripts/add.php') ?>
     </main>
     <footer>
     <h5><?echo "&#169;  ".date("\n l jS F Y"); ?></h5>
