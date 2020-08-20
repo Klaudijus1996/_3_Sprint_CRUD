@@ -1,6 +1,6 @@
 <?php 
-    if(isset($_GET['assign'])) { $projectID = $_GET['assign']; ob_clean();?>
-            <tr>
+    if(isset($_GET['projectsAssign'])) { $projectID = $_GET['projectsAssign']; ob_clean();?>
+           <tr>
                 <?php $column_index = 0; foreach($ProjectsColumns as $column) {$column_index++; ?>
                 <th><?echo $column?></th>
                 <?php if($column_index == 1) { echo "<th>Employees</th>"; } else {continue;} } ?>
@@ -14,11 +14,15 @@
                 <td><?echo group($query)?></td>
                 <td><?echo $project->getName()?></td>
                 <td><?echo $project->getDeadline()?></td>
-                <td><a href="index.php?delp=<?=$id?>">Del</a><a href="index.php?editp=<?=$id?>">Edit</a><a href="index.php?assign=<?=$id?>">Assign</a></td>
+                <td>
+                    <a href="index.php?projectsDel=<?=$id?>">Del</a>
+                    <a href="index.php?projectsEdit=<?=$id?>">Edit</a>
+                    <a href="index.php?projectsAssign=<?=$id?>">Assign</a>
+                    <a href="index.php?removeEmployee=<?=$id?>">Remove</a>
+                </td>
             </tr>
             <?php } ?>
         </table>
-        <?="<a href='index.php?addp'>Add</a>"?>
         <form action="" method="post" autocomplete="off">
             Select project: <select name="projects" id="projects"> 
                 <?php foreach($employees as $employee) { ?>

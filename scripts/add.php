@@ -1,8 +1,8 @@
 <?php
 if (isset($_GET['projectsAdd'])) {  ?>
             <form action="" method="post" autocomplete="off">
-                *Enter project name <input type="text" name="pname">
-                Date <input type="text" name="pdl">
+                *Enter project name: <input type="text" name="pname">
+                Date: <input type="text" name="pdl">
                 <input type="submit" value="Add">
                 <div><a href="index.php?projects">Cancel</a></div>
             </form>
@@ -24,10 +24,10 @@ if (isset($_GET['projectsAdd'])) {  ?>
     } 
         if (isset($_GET['employeeAdd'])) { ?>
         <form action="" method="post" autocomplete="off">
-            *Enter name<input type="text" name="fname">
-            *Enter last name<input type="text" name="lname">
-            *Enter role<input type="text" name="role">
-            <select name="projects" id="projects"> 
+            *Enter name: <input type="text" name="fname">
+            *Enter last name: <input type="text" name="lname">
+            *Enter role: <input type="text" name="role">
+            Select Project: <select name="projects" id="projects"> 
                 <option value="NULL">-</option>
                 <?php foreach($projects as $project) { ?>
                 <option value="<?=$project->getID()?>"><?=$project->getName()?></option>

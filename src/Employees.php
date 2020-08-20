@@ -30,13 +30,9 @@ use Doctrine\ORM\Query\AST\Functions\FunctionNode;
         /**
          * Many employees have one project. This is the owning side.
          * @ORM\ManyToOne(targetEntity="Project", inversedBy="team")
-         * @ORM\JoinColumn(name="project_id", referencedColumnName="project_id")
+         * @ORM\JoinColumn(name="project_id", referencedColumnName="project_id", onDelete="SET NULL", nullable=true)
          */
         protected $project_id;
-        // public function __construct($project_id)
-        // {
-        //     $this->project_id = $project_id;
-        // }
 
         public function getProjectData() {
             return $this->project_id;
