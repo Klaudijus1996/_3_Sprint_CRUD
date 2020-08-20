@@ -5,6 +5,7 @@
             *Enter last name<input type="text" name="lname">
             *Enter role<input type="text" name="role">
             <select name="projects" id="projects"> 
+                <option value="NULL">-</option>
                 <?php foreach($projects as $project) { ?>
                 <option value="<?=$project->getID()?>"><?=$project->getName()?></option>
                 <?php } ?>
