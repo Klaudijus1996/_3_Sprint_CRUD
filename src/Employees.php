@@ -33,6 +33,10 @@ use Doctrine\ORM\Query\AST\Functions\FunctionNode;
          * @ORM\JoinColumn(name="project_id", referencedColumnName="project_id")
          */
         protected $project_id;
+        // public function __construct($project_id)
+        // {
+        //     $this->project_id = $project_id;
+        // }
 
         public function getProjectData() {
             return $this->project_id;

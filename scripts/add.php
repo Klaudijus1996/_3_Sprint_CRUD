@@ -4,22 +4,26 @@
             *Enter name<input type="text" name="fname">
             *Enter last name<input type="text" name="lname">
             *Enter role<input type="text" name="role">
-             Enter project ID<input type="number" name="pid">
+            <select name="projects" id="projects"> 
+                <?php foreach($projects as $project) { ?>
+                <option value="<?=$project->getID()?>"><?=$project->getName()?></option>
+                <?php } ?>
+            </select>
             <input type="submit" value="Add">
             <div><a href="index.php">Cancel</a></div>
         </form>
     <?php 
         if (isset($_POST['fname']) && isset($_POST['lname'])) {
+            $projectID = $entityManager->find('Project', $_POST['projects']);
             $name = $_POST['fname'];
             $surname = $_POST['lname'];
             $role = empty($_POST['role']) ? '-' : $_POST['role'];
-            $projectid = empty($_POST['pid']) ? '-' : $_POST['pid'];
 
             $employee = new Employee();
             $employee->setName($name);
             $employee->setSurname($surname);
             $employee->setRole($role);
-            $employee->setProjectID($projectid);
+            $employee->setProjectID($projectID);
             $entityManager->persist($employee);
             $entityManager->flush();
             header('Location: ./index.php');
