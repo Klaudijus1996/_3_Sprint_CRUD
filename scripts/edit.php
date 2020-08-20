@@ -9,7 +9,7 @@
             Name: <input type="text" name="update-pname" value="<?=$getProject->getName()?>">
             Deadline: <input type="text" name="upd-dl" value="<?=$getProject->getDeadline()?>">
             <input class="sub" type="submit" value="Update">
-            <div><a href="index.php?projects">Cancel</a></div>
+            <div><a class='btn' href="index.php?projects">Cancel</a></div>
         </form>
 <?php 
         if (isset($_POST['update-pname']) || isset($_POST['upd-dl'])) {
@@ -36,7 +36,7 @@
                     <option value="NULL">-</option>
             </select>
             <input class="sub" type="submit" value="Update">
-            <div><a href="index.php">Cancel</a></div>
+            <div><a class='btn' href="index.php">Cancel</a></div>
         </form>
         <?php 
         if (isset($_POST['update-fname']) || isset($_POST['update-lname']) || isset($_POST['update-role']) || isset($_POST['projects'])) {

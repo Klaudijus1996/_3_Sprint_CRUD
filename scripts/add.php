@@ -3,8 +3,8 @@ if (isset($_GET['projectsAdd'])) {  ?>
             <form action="" method="post" autocomplete="off">
                 *Enter project name: <input type="text" name="pname">
                 Date: <input type="text" name="pdl">
-                <input type="submit" value="Add">
-                <div><a href="index.php?projects">Cancel</a></div>
+                <input class='btn' type="submit" value="Add">
+                <div><a class='btn' href="index.php?projects">Cancel</a></div>
             </form>
        <?php
        $date = date_create();
@@ -33,8 +33,8 @@ if (isset($_GET['projectsAdd'])) {  ?>
                 <option value="<?=$project->getID()?>"><?=$project->getName()?></option>
                 <?php } ?>
             </select>
-            <input type="submit" value="Add">
-            <div><a href="index.php">Cancel</a></div>
+            <input class='btn' type="submit" value="Add">
+            <div><a class='btn' href="index.php">Cancel</a></div>
         </form>
     <?php 
         if (isset($_POST['fname']) && isset($_POST['lname'])) {

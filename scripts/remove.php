@@ -18,10 +18,10 @@
             <td><?echo $project->getName()?></td>
             <td><?echo $project->getDeadline()?></td>
             <td>
-                <a href="index.php?projectsDel=<?=$id?>">Del</a>
-                <a href="index.php?projectsEdit=<?=$id?>">Edit</a>
-                <a href="index.php?projectsAssign=<?=$id?>">Assign</a>
-                <a href="index.php?removeEmployee=<?=$id?>">Remove</a>
+                <a class='btn' href="index.php?projectsDel=<?=$id?>">Del</a>
+                <a class='btn' href="index.php?projectsEdit=<?=$id?>">Edit</a>
+                <a class='btn' href="index.php?projectsAssign=<?=$id?>">Assign</a>
+                <a class='btn' href="index.php?removeEmployee=<?=$id?>">Remove</a>
             </td>
         </tr>
         <?php } ?>
@@ -32,7 +32,7 @@
                     <option value="<?=$single->getID()?>"><?=$single->getName();?> <?=$single->getSurname()?></option>
                <?php  } ?>
             </select>
-            <input type="submit" value="Remove">
+            <input class='btn' type="submit" value="Remove">
         </form>
    <?php 
         if(isset($_POST['selectEmployee'])) {

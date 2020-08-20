@@ -20,10 +20,12 @@ $ProjectsColumns = $entityManager->getClassMetadata('project')->getColumnNames()
 </head>
 <body>
     <header>
-        <div>
-            <a href="index.php">Employees</a>
-            <a href="index.php?projects">Projects</a>
-            <h2>C.R.U.D</h2>
+        <div class="nav">
+            <nav>
+                <a href="index.php">Employees</a>
+                <a href="index.php?projects">Projects</a>
+                <h2>C.R.U.D</h2>
+            </nav>
         </div>
     </header>
     <main>
@@ -42,8 +44,8 @@ $ProjectsColumns = $entityManager->getClassMetadata('project')->getColumnNames()
                 <td><?echo $employee->getSurname()?></td>
                 <td><?echo $employee->getRole()?></td>
                 <td>
-                    <a href="index.php?employeeDel=<?=$employee->getID()?>">Del</a>
-                    <a href="index.php?employeeEdit=<?=$employee->getID()?>">Edit</a>
+                    <a class='btn' href="index.php?employeeDel=<?=$employee->getID()?>">Del</a>
+                    <a class='btn' href="index.php?employeeEdit=<?=$employee->getID()?>">Edit</a>
                 </td>
             </tr>
             <?php } ?>
@@ -65,10 +67,10 @@ $ProjectsColumns = $entityManager->getClassMetadata('project')->getColumnNames()
                 <td><?echo $project->getName()?></td>
                 <td><?echo $project->getDeadline()?></td>
                 <td>
-                    <a href="index.php?projectsDel=<?=$id?>">Del</a>
-                    <a href="index.php?projectsEdit=<?=$id?>">Edit</a>
-                    <a href="index.php?projectsAssign=<?=$id?>">Assign</a>
-                    <a href="index.php?removeEmployee=<?=$id?>">Remove</a>
+                    <a class='btn' href="index.php?projectsDel=<?=$id?>">Del</a>
+                    <a class='btn' href="index.php?projectsEdit=<?=$id?>">Edit</a>
+                    <a class='btn' href="index.php?projectsAssign=<?=$id?>">Assign</a>
+                    <a class='btn' href="index.php?removeEmployee=<?=$id?>">Remove</a>
                 </td>
             </tr>
             <?php } ?>
@@ -76,9 +78,9 @@ $ProjectsColumns = $entityManager->getClassMetadata('project')->getColumnNames()
         <?php  } require_once('scripts/add.php'); require_once('scripts/edit.php');
         require_once('scripts/assign.php'); require_once('scripts/remove.php');
         if ($str == 'index.php') {
-            echo "<a href='index.php?employeeAdd'>Add</a>";
+            echo "<a class='btn' href='index.php?employeeAdd'>Add</a>";
         } else if ($str == 'index.php?projects') {
-            echo "<a href='index.php?projectsAdd'>Add</a>";
+            echo "<a class='btn' href='index.php?projectsAdd'>Add</a>";
         }
         ?>
     </main>

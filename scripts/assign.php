@@ -15,10 +15,10 @@
                 <td><?echo $project->getName()?></td>
                 <td><?echo $project->getDeadline()?></td>
                 <td>
-                    <a href="index.php?projectsDel=<?=$id?>">Del</a>
-                    <a href="index.php?projectsEdit=<?=$id?>">Edit</a>
-                    <a href="index.php?projectsAssign=<?=$id?>">Assign</a>
-                    <a href="index.php?removeEmployee=<?=$id?>">Remove</a>
+                    <a class='btn' href="index.php?projectsDel=<?=$id?>">Del</a>
+                    <a class='btn' href="index.php?projectsEdit=<?=$id?>">Edit</a>
+                    <a class='btn' href="index.php?projectsAssign=<?=$id?>">Assign</a>
+                    <a class='btn' href="index.php?removeEmployee=<?=$id?>">Remove</a>
                 </td>
             </tr>
             <?php } ?>
@@ -30,7 +30,7 @@
                     <?php } ?>
                     <option value="NULL">-</option>
             </select>
-            <input type="submit" value="Assign">
+            <input class='btn' type="submit" value="Assign">
         </form>
     <?php 
             if (isset($_POST['projects'])) {
