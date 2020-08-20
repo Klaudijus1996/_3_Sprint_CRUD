@@ -1,6 +1,27 @@
 <?php 
-     if (isset($_GET['edite'])) {
-        $editEmployee = $_GET['edite'];
+     if (isset($_GET['projectsEdit'])) {
+         $editProject = $_GET['projectsEdit'];
+         $projects = $entityManager->getRepository('Project')->findAll();
+         $getProject = $entityManager->find('Project', $editProject);
+         
+         ?>
+        <form action="" method="post" autocomplete="off">
+            Name: <input type="text" name="update-pname" value="<?=$getProject->getName()?>">
+            Deadline: <input type="text" name="upd-dl" value="<?=$getProject->getDeadline()?>">
+            <input class="sub" type="submit" value="Update">
+            <div><a href="index.php?projects">Cancel</a></div>
+        </form>
+<?php 
+        if (isset($_POST['update-pname']) || isset($_POST['upd-dl'])) {
+            $name = $_POST['update-pname'];
+            $deadline = !empty($_POST['upd-dl']) ? $_POST['upd-dl'] : $getProject->getDeadline();
+            $getProject->setName($name);
+            $getProject->setDeadline($deadline);
+            $entityManager->flush();
+            header('Location: ./index.php?projects');
+        }
+    } else if (isset($_GET['employeeEdit'])) {
+        $editEmployee = $_GET['employeeEdit'];
         $employees = $entityManager->getRepository('Employee')->findAll();
         $employee = $entityManager->find('Employee', $editEmployee);
         ?>

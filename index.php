@@ -3,8 +3,10 @@ declare(strict_types=1);
 use Doctrine\ORM\Query;
 include_once('bootstrap.php');
 include_once('scripts/functions.php');
-include_once('scripts/employeeAdmin/del.php');
-include_once('scripts/projectAdmin/del.php');
+include_once('scripts/del.php');
+// $URI = $_SERVER['REQUEST_URI'];
+//     $str = substr($URI, 0, strripos($URI, '/'));
+//     echo "<h1>$str</h1>";
 $employees = $entityManager->getRepository('employee')->findAll();
 $projects = $entityManager->getRepository('project')->findAll();
 $EmployeeTableColumns = $entityManager->getClassMetadata('employee')->getColumnNames();
@@ -42,12 +44,12 @@ $ProjectsColumns = $entityManager->getClassMetadata('project')->getColumnNames()
                 <td><?echo $employee->getName()?></td>
                 <td><?echo $employee->getSurname()?></td>
                 <td><?echo $employee->getRole()?></td>
-                <td><a href="index.php?dele=<?=$employee->getID()?>">Del</a><a href="index.php?edite=<?=$employee->getID()?>">Edit</a></td>
+                <td><a href="index.php?employeeDel=<?=$employee->getID()?>">Del</a><a href="index.php?employeeEdit=<?=$employee->getID()?>">Edit</a></td>
             </tr>
             <?php } ?>
         </table>
-        <?php require_once('scripts/employeeAdmin/add.php'); require_once('scripts/employeeAdmin/edit.php') ?>
-            <?php if(isset($_GET['projects'])) { ob_clean(); ?>
+        
+            <?php if(isset($_GET['projects']) || isset($_GET['projectDel']) || isset($_GET['projectsAdd']) || isset($_GET['projectsEdit']) || isset($_GET['projectsAssign'])) { ob_clean();  ?>
             <tr>
                 <?php $column_index = 0; foreach($ProjectsColumns as $column) {$column_index++; ?>
                 <th><?echo $column?></th>
@@ -62,12 +64,18 @@ $ProjectsColumns = $entityManager->getClassMetadata('project')->getColumnNames()
                 <td><?echo group($query)?></td>
                 <td><?echo $project->getName()?></td>
                 <td><?echo $project->getDeadline()?></td>
-                <td><a href="index.php?delp=<?=$id?>">Del</a><a href="index.php?editp=<?=$id?>">Edit</a><a href="index.php?assign=<?=$id?>">Assign</a></td>
+                <td><a href="index.php?projectsDel=<?=$id?>">Del</a><a href="index.php?projectsEdit=<?=$id?>">Edit</a><a href="index.php?projectsAssign=<?=$id?>">Assign</a></td>
             </tr>
             <?php } ?>
         </table>
-        <?php echo "<a href='index.php?addp'>Add</a>"; } require_once('scripts/projectAdmin/add.php'); require_once('scripts/projectAdmin/edit.php');
-        require_once('scripts/projectAdmin/assign.php') ?>
+        <?php  } require_once('scripts/add.php'); require_once('scripts/edit.php');
+        require_once('scripts/projectAdmin/assign.php'); 
+        if ($str == 'index.php') {
+            echo "<a href='index.php?employeeAdd'>Add</a>";
+        } else if ($str == 'index.php?projects') {
+            echo "<a href='index.php?projectsAdd'>Add</a>";
+        }
+        ?>
     </main>
     <footer>
     <h5><?echo "&#169;  ".date("\n l jS F Y"); ?></h5>
