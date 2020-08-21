@@ -4,7 +4,7 @@
                 <?php $column_index = 0; foreach($ProjectsColumns as $column) {$column_index++; ?>
                 <th><?echo $column?></th>
                 <?php if($column_index == 1) { echo "<th>Employees</th>"; } else {continue;} } ?>
-                <th>Actions</th>
+                <th style="text-align: center;">Actions</th>
             </tr>
             <?php foreach($projects as $project) {
                 $id = $project->getID();
@@ -14,7 +14,7 @@
                 <td><?echo group($query)?></td>
                 <td><?echo $project->getName()?></td>
                 <td><?echo $project->getDeadline()?></td>
-                <td>
+                <td style="text-align: center;">
                     <a class='btn' href="index.php?projectsDel=<?=$id?>">Del</a>
                     <a class='btn' href="index.php?projectsEdit=<?=$id?>">Edit</a>
                     <a class='btn' href="index.php?projectsAssign=<?=$id?>">Assign</a>
@@ -24,12 +24,13 @@
             <?php } ?>
         </table>
         <form action="" method="post" autocomplete="off">
-            Select project: <select name="projects" id="projects"> 
+            Select employee: <select name="projects" id="projects"> 
                 <?php foreach($employees as $employee) { ?>
                     <option value="<?=$employee->getID()?>"><?=$employee->getName().' '.$employee->getSurname()?></option>
                     <?php } ?>
                     <option value="NULL">-</option>
             </select>
+            <div><a class='btn' href="index.php?projects">Cancel</a></div>
             <input class='btn' type="submit" value="Assign">
         </form>
     <?php 

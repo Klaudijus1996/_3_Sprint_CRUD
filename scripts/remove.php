@@ -7,7 +7,7 @@
             <?php $column_index = 0; foreach($ProjectsColumns as $column) {$column_index++; ?>
             <th><?echo $column?></th>
             <?php if($column_index == 1) { echo "<th>Employees</th>"; } else {continue;} } ?>
-            <th>Actions</th>
+            <th style="text-align: center;">Actions</th>
         </tr>
         <?php foreach($projects as $project) {
             $id = $project->getID();
@@ -17,7 +17,7 @@
             <td><?echo group($query)?></td>
             <td><?echo $project->getName()?></td>
             <td><?echo $project->getDeadline()?></td>
-            <td>
+            <td style="text-align: center;">
                 <a class='btn' href="index.php?projectsDel=<?=$id?>">Del</a>
                 <a class='btn' href="index.php?projectsEdit=<?=$id?>">Edit</a>
                 <a class='btn' href="index.php?projectsAssign=<?=$id?>">Assign</a>
@@ -27,11 +27,12 @@
         <?php } ?>
         </table>
         <form action="" method="post">
-            Remove employee from project: <select name="selectEmployee" id="">
+            Remove employee: <select name="selectEmployee" id="">
                 <?php foreach($employee as $single) { ?>
                     <option value="<?=$single->getID()?>"><?=$single->getName();?> <?=$single->getSurname()?></option>
                <?php  } ?>
             </select>
+            <div><a class='btn' href="index.php?projects">Cancel</a></div>
             <input class='btn' type="submit" value="Remove">
         </form>
    <?php 
