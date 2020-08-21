@@ -33,9 +33,9 @@ $ProjectsColumns = $entityManager->getClassMetadata('project')->getColumnNames()
             <?php ob_start(); ?>
             <tr>
                 <?php foreach($EmployeeTableColumns as $column) { ?>
-                <th><?echo $column?></th>
+                <th><?=replace($column)?></th>
                 <?php } ?>
-                <th>Actions</th>
+                <th style="text-align: center;">Actions</th>
             </tr>
             <?php foreach($employees as $employee) { ?>
             <tr>
@@ -43,7 +43,7 @@ $ProjectsColumns = $entityManager->getClassMetadata('project')->getColumnNames()
                 <td><?echo $employee->getName()?></td>
                 <td><?echo $employee->getSurname()?></td>
                 <td><?echo $employee->getRole()?></td>
-                <td>
+                <td style="text-align: center;">
                     <a class='btn' href="index.php?employeeDel=<?=$employee->getID()?>">Del</a>
                     <a class='btn' href="index.php?employeeEdit=<?=$employee->getID()?>">Edit</a>
                 </td>
@@ -54,9 +54,9 @@ $ProjectsColumns = $entityManager->getClassMetadata('project')->getColumnNames()
             <?php if(isset($_GET['projects']) || isset($_GET['projectDel']) || isset($_GET['projectsAdd']) || isset($_GET['projectsEdit'])) { ob_clean();  ?>
             <tr>
                 <?php $column_index = 0; foreach($ProjectsColumns as $column) {$column_index++; ?>
-                <th><?echo $column?></th>
+                <th><?=replace($column)?></th>
                 <?php if($column_index == 1) { echo "<th>Employees</th>"; } else {continue;} } ?>
-                <th>Actions</th>
+                <th style="text-align: center;">Actions</th>
             </tr>
             <?php foreach($projects as $project) {
                 $id = $project->getID();
@@ -66,7 +66,7 @@ $ProjectsColumns = $entityManager->getClassMetadata('project')->getColumnNames()
                 <td><?echo group($query)?></td>
                 <td><?echo $project->getName()?></td>
                 <td><?echo $project->getDeadline()?></td>
-                <td>
+                <td style="text-align: center;">
                     <a class='btn' href="index.php?projectsDel=<?=$id?>">Del</a>
                     <a class='btn' href="index.php?projectsEdit=<?=$id?>">Edit</a>
                     <a class='btn' href="index.php?projectsAssign=<?=$id?>">Assign</a>
@@ -77,10 +77,10 @@ $ProjectsColumns = $entityManager->getClassMetadata('project')->getColumnNames()
         </table>
         <?php  } require_once('scripts/add.php'); require_once('scripts/edit.php');
         require_once('scripts/assign.php'); require_once('scripts/remove.php');
-        if ($str == 'index.php') {
-            echo "<a class='btn' href='index.php?employeeAdd'>Add</a>";
+        if ($str == 'index.php' || $str == '') {
+            echo "<a class='right btn' href='index.php?employeeAdd'>Add</a>";
         } else if ($str == 'index.php?projects') {
-            echo "<a class='btn' href='index.php?projectsAdd'>Add</a>";
+            echo "<a class='right btn' href='index.php?projectsAdd'>Add</a>";
         }
         ?>
     </main>

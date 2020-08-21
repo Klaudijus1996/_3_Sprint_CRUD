@@ -66,6 +66,9 @@ form {
 form > input, select {
   display: block;
 }
+.right {
+  float: right;
+}
 table {
     font-family: arial, sans-serif;
     width: 100%;
@@ -75,6 +78,7 @@ table {
   td, th {
     text-align: left;
     padding: 8px;
+    text-transform: capitalize;
   }
   tr:nth-child(odd) {
     background-color: #1F2739;

@@ -13,4 +13,13 @@
         }
         return substr($groupedPeople, 0, strripos($groupedPeople, ','));
     }
+    function replace($str) {
+        $rg = '/_|-/i';
+        if (preg_match($rg, $str)) {
+            $string = preg_replace($rg, ' ', $str);
+        } else {
+            return $str;
+        }
+        return $string;
+    }
 ?>
