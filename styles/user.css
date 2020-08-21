@@ -50,6 +50,21 @@ main {
   padding: 5px 10px;
   cursor: pointer;
   color: #dddddd;
+  margin: 5px 3px;
+}
+.btn:hover {
+  background-color: #dddddd;
+  color: #1F2739;
+  transition: 0.4s;
+}
+a {
+  text-decoration: none;
+}
+form {
+  width: fit-content;
+}
+form > input, select {
+  display: block;
 }
 table {
     font-family: arial, sans-serif;

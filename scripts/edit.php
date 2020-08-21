@@ -8,7 +8,7 @@
         <form action="" method="post" autocomplete="off">
             Name: <input type="text" name="update-pname" value="<?=$getProject->getName()?>">
             Deadline: <input type="text" name="upd-dl" value="<?=$getProject->getDeadline()?>">
-            <input class="sub" type="submit" value="Update">
+            <input class="btn" type="submit" value="Update">
             <div><a class='btn' href="index.php?projects">Cancel</a></div>
         </form>
 <?php 
@@ -35,7 +35,7 @@
                     <?php } ?>
                     <option value="NULL">-</option>
             </select>
-            <input class="sub" type="submit" value="Update">
+            <input class="btn" type="submit" value="Update">
             <div><a class='btn' href="index.php">Cancel</a></div>
         </form>
         <?php 
