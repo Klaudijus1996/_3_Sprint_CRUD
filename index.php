@@ -1,5 +1,7 @@
 <?php 
 declare(strict_types=1);
+require_once('config.php');
+$_SESSION['db_gen'] = true;
 use Doctrine\ORM\Query;
 include_once('bootstrap.php');
 include_once('scripts/functions.php');
